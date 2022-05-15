@@ -1,0 +1,9 @@
+- task: Xcode@5
+  inputs:
+    actions: 'build'
+    packageApp: false
+
+- task: Xcode@5
+  inputs:
+    actions: 'test'
+    packageApp: false
