@@ -17,20 +17,28 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
 
-    - task: Xcode@5
-      inputs:
-        actions: 'clean build'
-        scheme: '$(scheme_name)'
-        sdk: 'iphoneos'
-        configuration: 'Release'
-        xcWorkspacePath: './*.xcodeproj'
-        xcodeVersion: 'default'
-        packageApp: false
+- task: Xcode@5
+  inputs:
+    actions: 'build'
+    configuration: 'Release'
+    sdk: '$(SDK)'
+    xcodeVersion: '12'
+    packageApp: false
+    destinationPlatformOption: 'iOS'
+    destinationSimulators: 'iPhone 11'
+    publishJUnitResults: true
+    testRunTitle: 'Run_Tests'
 
-    
-    - task: Xcode@5
-      inputs:
-        actions: 'test'
-        packageApp: false
-  displayName: 'Run a multi-line script'
+- task: Xcode@5
+  inputs:
+    actions: 'test'
+    configuration: 'Release'
+    sdk: '$(SDK)'
+    xcodeVersion: '12'
+    packageApp: false
+    destinationPlatformOption: 'iOS'
+    destinationSimulators: 'iPhone 11'
+    publishJUnitResults: true
+    testRunTitle: 'Run_Tests'
+
 
