@@ -13,13 +13,10 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-
 - task: Xcode@5
   inputs:
     actions: 'build'
+    xcWorkspacePath: 'Ratios/'
     configuration: 'Release'
     sdk: '$(SDK)'
     xcodeVersion: '12'
@@ -32,6 +29,7 @@ steps:
 - task: Xcode@5
   inputs:
     actions: 'test'
+    xcWorkspacePath: 'Ratios/'
     configuration: 'Release'
     sdk: '$(SDK)'
     xcodeVersion: '12'
@@ -41,4 +39,8 @@ steps:
     publishJUnitResults: true
     testRunTitle: 'Run_Tests'
 
-
+- task: Xcode@5
+  inputs:
+    actions: 'build'
+    xcWorkspacePath: 'Ratios/*.xcodeproj'
+    packageApp: false
